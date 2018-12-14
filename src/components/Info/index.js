@@ -17,15 +17,15 @@ class Info extends Component {
     }
 
     render() {
-        const {result,currency,quantity,exchangeDate} = this.props
-        console.log(exchangeDate[0])
+        const {result,currency,quantity,exchangeData} = this.props
+        console.log("data in component:",exchangeData.date)
+        console.log("currencyExchangeData in component:",exchangeData.currencyExchangeData)
         return (
             <div>
                 <p>Result is: {result} UAH for {quantity} {currency === "USD" ? "$" : "€"}</p>
                 <table>
                      <thead>
                         <tr>
-                            <th></th>
                             <th>DATE</th>
                         </tr>
                     </thead>
@@ -50,7 +50,7 @@ class Info extends Component {
 }
 
 const mapStateToProps = (state) =>({
-    exchangeDate: state.exchangeDate
+    exchangeData: state.exchangeData
 })
 export default connect(mapStateToProps,
     {defaultRateForToday})

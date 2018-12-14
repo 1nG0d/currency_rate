@@ -13,5 +13,5 @@ export default combineReducers({
     selectedDate: dateSelectedReducer,
     quantity: quantityInputReducer,
     result: calculateResultReducer,
-    exchangeDate: exchangeRateReducer
+    exchangeData: exchangeRateReducer
 })

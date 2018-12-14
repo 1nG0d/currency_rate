@@ -1,5 +1,5 @@
 {
-  "name": "exchange-calc",
+  "name": "currency_rate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
