@@ -35,12 +35,21 @@ export const resultCalculation = (exchangeRange, quantity) =>({
 export const defaultRateForToday=(defaultCurrency)=> {
 
     const date = dateNormalizer(new Date())
-    const currencyExchange = []/
+
     return function (dispatch, getState) {
 
         Promise.all(defaultCurrency.map(currency =>
             fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currency}&date=${date}&json`).then(resp => resp.json())
-        )).then(result => {currencyExchange[currency]  = response[0].rate})
+        )).then(
+            result => {
+                const tmp = {};
+                result.forEach(item => tmp[item[0]['cc']] = item[0]['rate']);
+                console.log('result is:', tmp);
+                dispatch({
+                    type:"DEFAULT_RATE_FOR_TODAY",
+                    payload: {date: date, currencyExchangeData: {...tmp}}
+                })
+            })
     }
 }
 
