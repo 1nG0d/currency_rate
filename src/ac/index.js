@@ -1,9 +1,13 @@
-import {SELECT_CURRENCY,
-        SELECT_DATE,
-        INPUT_QUANTITY,
-        CALCULATE,
-        GET_EXCHANGE_RATE,
-        DEFAULT_RATE_FOR_TODAY} from '../constants'
+import {
+    SELECT_CURRENCY,
+    SELECT_DATE,
+    INPUT_QUANTITY,
+    CALCULATE,
+    GET_EXCHANGE_RATE,
+    DEFAULT_RATE_FOR_TODAY
+} from '../constants';
+
+import { getDefaultCurrency, dateNormalizer } from "../helper";
 
 export const selectCurrencyAction = (currency) =>({
     type: SELECT_CURRENCY,
@@ -30,12 +34,9 @@ export const resultCalculation = (exchangeRange, quantity) =>({
 //    apiCall: `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currency}&date=${date}&json`
 //})
 
-
-export const defaultRateForToday=(defaultCurrency)=>({
+export const defaultRateForToday= (defaultCurrency)=>({
     type: DEFAULT_RATE_FOR_TODAY,
-    payload:{defaultCurrency},
-    apiCall: true
-
+    payload: getDefaultCurrency({ currency: defaultCurrency, date: dateNormalizer(new Date)})
 })
 
 export const getExchangeRate = (currency,date)=>({

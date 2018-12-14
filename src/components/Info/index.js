@@ -7,13 +7,13 @@ import {connect} from 'react-redux'
 import {dateNormalizer} from "../../helper"
 import {Map} from 'immutable'
 
-const defaultCurrency = ["USD","EUR"]
+const defaultCurrency = ["USD","EUR"];
 
 class Info extends Component {
 
     componentDidMount(){
-        const {defaultRateForToday} = this.props
-        defaultRateForToday(defaultCurrency)
+        // or use Promise.all, in action. Depends on your plans and architecture.
+        defaultCurrency.forEach(currency => this.props.defaultRateForToday(currency));
     }
 
     render() {
