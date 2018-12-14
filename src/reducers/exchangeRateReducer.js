@@ -2,6 +2,7 @@ import {DEFAULT_RATE_FOR_TODAY} from '../constants'
 import {dateNormalizer} from '../helper'
 import {Map, Record, List} from 'immutable'
 
+
 const exchangeRateDefault= {
     date: new Date(),
     currencyExchangeData: {"USD": 0, "EUR" : 0}
