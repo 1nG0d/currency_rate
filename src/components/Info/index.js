@@ -32,14 +32,14 @@ class Info extends Component {
                     <tbody>
                         <tr>
                             <td>$</td>
-                            <td>ex1</td>
+                            <td>{exchangeData.currencyExchangeData["USD"]}</td>
                         </tr>
                         <tr>
                             <td>
                                 €
                             </td>
                             <td>
-                            ex2
+                                {exchangeData.currencyExchangeData["EUR"]}
                             </td>
                         </tr>
                     </tbody>
