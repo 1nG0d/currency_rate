@@ -7,7 +7,8 @@ const selectedDateDefault = new Date();
 
     switch (type){
         case (SELECT_DATE): return payload.date
+        default: return selectedDate
     }
-    return selectedDate
+
 }
 export default dateSelectedReducer

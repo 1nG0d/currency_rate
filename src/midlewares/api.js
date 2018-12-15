@@ -14,7 +14,6 @@ export default store  =>  next => action => {
         .then(response => {currencyExchange[currency]  = response[0].rate})
     });
 
-
     return next({...action,
         payload: Object.assign({}, payload, {date:date, currencyExchangeData: currencyExchange})
     })

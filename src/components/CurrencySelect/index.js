@@ -32,7 +32,7 @@ class CurrencySelect extends Component {
                     value={selectedCurrency}
                     onChange={this.handleChange}
                     options={options}
-                    defaultValue={options[0]}
+                    defaultValue={options}
                     isMulti
                     />
             </div>
