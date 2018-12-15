@@ -1,5 +1,5 @@
 import {SELECT_CURRENCY,
-        SELECT_DATE,
+        SELECT_DATE_RANGE,
         INPUT_QUANTITY,
         CALCULATE,
         GET_EXCHANGE_RATE,
@@ -12,9 +12,9 @@ export const selectCurrencyAction = (currency) =>({
     payload: {currency}
 })
 
-export const selectDateAction =(date) =>({
-    type: SELECT_DATE,
-    payload: {date}
+export const selectDateAction =(dateRange) =>({
+    type: SELECT_DATE_RANGE,
+    payload: {dateRange}
 })
 
 export const inputQuantityAction = (quantity) =>({

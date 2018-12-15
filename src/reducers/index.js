@@ -10,7 +10,7 @@ import exchangeRateReducer from './exchangeRateReducer'
 
 export default combineReducers({
     currency : currencyReducer,
-    selectedDate: dateSelectedReducer,
+    selectedRange: dateSelectedReducer,
     quantity: quantityInputReducer,
     result: calculateResultReducer,
     exchangeData: exchangeRateReducer

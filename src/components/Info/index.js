@@ -54,5 +54,4 @@ const mapStateToProps = (state) =>({
     exchangeData: state.exchangeData
 })
 export default connect(mapStateToProps,
-    {defaultRateForToday})
-    (Info)
+    {defaultRateForToday})(Info)

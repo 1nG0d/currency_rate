@@ -1,14 +1,16 @@
-import {SELECT_DATE} from "../constants"
+import {SELECT_DATE_RANGE} from "../constants"
+import * as moment from 'moment'
+import {arrayOfDays,dateNormalizer} from '../helper'
 
-const selectedDateDefault = new Date();
+const selectedDateDefault = [].concat(dateNormalizer(moment().format()));
 
- const dateSelectedReducer = (selectedDate = selectedDateDefault, action) =>{
+ const dateSelectedReducer = (state = selectedDateDefault, action) =>{
     const {type,payload} = action
-
     switch (type){
-        case (SELECT_DATE): return payload.date
-        default: return selectedDate
+        case (SELECT_DATE_RANGE): {
+            return arrayOfDays(payload.dateRange.from,payload.dateRange.to)
+        }
+        default: return state
     }
-
 }
 export default dateSelectedReducer

@@ -1,6 +1,6 @@
 import {SELECT_CURRENCY} from '../constants'
 
-const defaultCurrency = ["USD"]
+const defaultCurrency = ["USD","EUR"]
 
 const currencyReducer = (currency = defaultCurrency, action) =>{
 
