@@ -17,12 +17,9 @@ class Info extends Component {
     }
 
     render() {
-        const {result,currency,quantity,exchangeData} = this.props
-        console.log("data in component:",exchangeData.date)
-        console.log("currencyExchangeData in component:",exchangeData.currencyExchangeData)
+        const {exchangeData} = this.props
         return (
-            <div>
-                <p>Result is: {result} UAH for {quantity} {currency === "USD" ? "$" : "€"}</p>
+            <div className="tableOfResults">
                 <table>
                      <thead>
                         <tr>

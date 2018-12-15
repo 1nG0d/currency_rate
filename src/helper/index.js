@@ -2,7 +2,6 @@ import * as moment from 'moment'
 import {eachDay} from "date-fns"
 
 export const dateNormalizer = (date) => {
-   console.log(moment(date).format())
    return moment(date).format().substring(0,10).replace(/-/g,'');
 }
 

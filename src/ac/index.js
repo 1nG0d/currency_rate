@@ -1,11 +1,18 @@
-import {SELECT_CURRENCY,
+import {
+        SELECT_CURRENCY,
         SELECT_DATE_RANGE,
         INPUT_QUANTITY,
         CALCULATE,
         GET_EXCHANGE_RATE,
-        //DEFAULT_RATE_FOR_TODAY
-        } from '../constants'
+        //DEFAULT_RATE_FOR_TODAY,
+        GET_ALL_CURRENCIES
+        }from '../constants'
+
 import {dateNormalizer} from "../helper/index"
+
+export const getCurrenciesFromNbuApi = () =>({
+    type: GET_ALL_CURRENCIES
+})
 
 export const selectCurrencyAction = (currency) =>({
     type: SELECT_CURRENCY,
@@ -27,12 +34,6 @@ export const resultCalculation = (exchangeRange, quantity) =>({
     payload: {exchangeRange, quantity}
 })
 
-//export const getExchangeRate = (currency,date)=>({
-//    type: GET_EXCHANGE_RATE,
-//    apiCall: `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currency}&date=${date}&json`
-//})
-
-
 export const defaultRateForToday=(defaultCurrency)=> {
 
     const date = dateNormalizer(new Date())
@@ -53,7 +54,6 @@ export const defaultRateForToday=(defaultCurrency)=> {
             })
     }
 }
-
 
 export const getExchangeRate = (currency,date)=>({
     type: GET_EXCHANGE_RATE,
