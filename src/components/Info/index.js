@@ -5,6 +5,7 @@ import {
 
 import {connect} from 'react-redux'
 import {dateHumanReadable} from "../../helper"
+import Thead from './thead'
 
 
 const defaultCurrency = ["USD","EUR"]
@@ -20,28 +21,7 @@ class Info extends Component {
         const {exchangeData} = this.props
         return (
             <div className="tableOfResults">
-                <table>
-                     <thead>
-                        <tr>
-                            <th>DATE</th>
-                            <th>{dateHumanReadable(exchangeData.date)}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>$</td>
-                            <td>{exchangeData.currencyExchangeData["USD"]}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                €
-                            </td>
-                            <td>
-                                {exchangeData.currencyExchangeData["EUR"]}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <Thead currencyList = {defaultCurrency}/>
             </div>
         )
     }
