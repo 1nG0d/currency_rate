@@ -4,8 +4,10 @@ import {
         } from '../../ac'
 
 import {connect} from 'react-redux'
+// eslint-disable-next-line
 import {dateHumanReadable} from "../../helper"
-import Thead from './thead'
+import Tbody from './Tbody'
+import Thead from './Thead'
 
 
 const defaultCurrency = ["USD","EUR"]
@@ -18,17 +20,19 @@ class Info extends Component {
     }
 
     render() {
-        const {exchangeData} = this.props
+        const {exchangeData, currency} = this.props
         return (
             <div className="tableOfResults">
-                    <Thead currencyList = {defaultCurrency}/>
+                    <Thead currencyList = {currency? currency : defaultCurrency}/>
+                    <Tbody date={exchangeData.date} currencyExchangeData={exchangeData.currencyExchangeData}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) =>({
-    exchangeData: state.exchangeData
+    exchangeData: state.exchangeData,
+    currency: state.currency
 })
 export default connect(mapStateToProps,
     {defaultRateForToday})(Info)

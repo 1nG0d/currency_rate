@@ -26,3 +26,4 @@ export const arrayOfDays = (from, to)=>{
 
    return arr.map((day)=>dateNormalizer(moment(day).format()))
 }
+
