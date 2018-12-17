@@ -4,8 +4,8 @@ import {
         } from '../../ac'
 
 import {connect} from 'react-redux'
-import {dateNormalizer} from "../../helper"
-import {Map} from 'immutable'
+import {dateHumanReadable} from "../../helper"
+
 
 const defaultCurrency = ["USD","EUR"]
 
@@ -17,16 +17,14 @@ class Info extends Component {
     }
 
     render() {
-        const {result,currency,quantity,exchangeData} = this.props
-        console.log("data in component:",exchangeData.date)
-        console.log("currencyExchangeData in component:",exchangeData.currencyExchangeData)
+        const {exchangeData} = this.props
         return (
-            <div>
-                <p>Result is: {result} UAH for {quantity} {currency === "USD" ? "$" : "€"}</p>
+            <div className="tableOfResults">
                 <table>
                      <thead>
                         <tr>
                             <th>DATE</th>
+                            <th>{dateHumanReadable(exchangeData.date)}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,5 +51,4 @@ const mapStateToProps = (state) =>({
     exchangeData: state.exchangeData
 })
 export default connect(mapStateToProps,
-    {defaultRateForToday})
-    (Info)
+    {defaultRateForToday})(Info)

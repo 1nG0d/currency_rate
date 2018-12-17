@@ -1,6 +1,4 @@
 import {DEFAULT_RATE_FOR_TODAY} from '../constants'
-import {dateNormalizer} from '../helper'
-import {Map, Record, List} from 'immutable'
 
 const exchangeRateDefault= {
     date: new Date(),
@@ -13,7 +11,9 @@ const exchangeRateReducer = (exchangeDate = exchangeRateDefault, action) =>{
         case DEFAULT_RATE_FOR_TODAY: {
             return { ...payload }
         }
+
+        default: return exchangeDate
     }
-    return exchangeDate
+
 }
 export default exchangeRateReducer

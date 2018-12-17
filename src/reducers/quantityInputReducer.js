@@ -6,8 +6,9 @@ const quantityInputReducer = (quantity = quantityDefault, action) =>{
     const {type,payload} = action
     switch (type){
         case (INPUT_QUANTITY): return payload.quantity
+        default: return quantity
     }
-    return quantity
+
 }
 
 export default quantityInputReducer
