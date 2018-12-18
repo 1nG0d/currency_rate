@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import Select from 'react-select';
-import {selectCurrencyAction} from '../../ac'
+import {
+        selectCurrencyAction,
+        getExchangeRate
+        } from '../../ac'
 
 import {connect} from 'react-redux'
 
@@ -19,16 +22,17 @@ class CurrencySelect extends Component {
         fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
         .then(res => res.json())
         .then(result => {
-                this.setState({option: result.map((item)=>{return {value: item.cc, label: item.txt}})})
+                this.setState({option: result.map((item)=>{return {value: item.cc, label: item.txt}}).concat({value: "EUR", label:"Євро"}) })
             })
     }
 
     handleChange = (selectedCurrency) => {
-        const {selectCurrencyAction} = this.props
+        const {selectCurrencyAction, getExchangeRate} = this.props
         const currencyArray =[]
 
         selectedCurrency.forEach((currencyObj)=>currencyArray.push(currencyObj.value))
-        selectCurrencyAction( currencyArray)
+        selectCurrencyAction(currencyArray)
+        getExchangeRate()
     }
 
     render() {
@@ -50,4 +54,4 @@ class CurrencySelect extends Component {
 
 export default connect((state)=>({
     currency: state.currency}),
-    {selectCurrencyAction})(CurrencySelect)
+    {selectCurrencyAction, getExchangeRate})(CurrencySelect)

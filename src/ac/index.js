@@ -4,7 +4,7 @@ import {
         INPUT_QUANTITY,
         CALCULATE,
         GET_EXCHANGE_RATE,
-        //DEFAULT_RATE_FOR_TODAY,
+        DEFAULT_RATE_FOR_TODAY,
         GET_ALL_CURRENCIES
         }from '../constants'
 
@@ -35,9 +35,7 @@ export const resultCalculation = (exchangeRange, quantity) =>({
 })
 
 export const defaultRateForToday=(defaultCurrency)=> {
-
     const date = dateNormalizer(new Date())
-
     return function (dispatch, getState) {
 
         Promise.all(defaultCurrency.map(currency =>
@@ -48,16 +46,14 @@ export const defaultRateForToday=(defaultCurrency)=> {
                 result.forEach(item => tmp[item[0]['cc']] = item[0]['rate']);
                 console.log('result is:', tmp);
                 dispatch({
-                    type:"DEFAULT_RATE_FOR_TODAY",
+                    type: DEFAULT_RATE_FOR_TODAY,
                     payload: {date: date, currencyExchangeData: {...tmp}}
                 })
             })
     }
 }
 
-export const getExchangeRate = (currency,date)=>({
+export const getExchangeRate = (currency)=>({
     type: GET_EXCHANGE_RATE,
-    payload: {currency,date},
     apiCall: true
-
 })

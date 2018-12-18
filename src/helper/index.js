@@ -1,13 +1,12 @@
 import * as moment from 'moment'
 
-
-
 export const dateNormalizer = (date) => {
    return moment(date).format().substring(0,10).replace(/-/g,'');
 }
 
 export const dateHumanReadable = (date) => {
-   return moment(date).format().substring(0,10);
+    const date_tmp = moment(date).format().substring(0,10).split("-");
+    return date_tmp[2] + "-" + date_tmp[1] + "-" + date_tmp[0];
 }
 
 function eachDay(startDate, stopDate) {
@@ -23,7 +22,6 @@ function eachDay(startDate, stopDate) {
 
 export const arrayOfDays = (from, to)=>{
    const arr =  eachDay(from, to)
-
    return arr.map((day)=>dateNormalizer(moment(day).format()))
 }
 

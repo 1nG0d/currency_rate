@@ -8,12 +8,12 @@ import {connect} from 'react-redux'
 import {dateHumanReadable} from "../../helper"
 import Tbody from './Tbody'
 import Thead from './Thead'
+import './style.scss'
 
 
 const defaultCurrency = ["USD","EUR"]
 
 class Info extends Component {
-
     componentDidMount(){
         const {defaultRateForToday} = this.props
         defaultRateForToday(defaultCurrency)

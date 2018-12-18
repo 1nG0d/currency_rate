@@ -8,7 +8,7 @@ export const GET_ALL_CURRENCIES = "GET_ALL_CURRENCIES"
 
 
 // sufixes
-export const START = "START"
-export const SUCCESS = "SUCCESS"
-export const FAILED = "FAILED"
+export const START = "_START"
+export const SUCCESS = "_SUCCESS"
+export const FAILED = "_FAILED"
 
