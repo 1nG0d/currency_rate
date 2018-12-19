@@ -19,12 +19,15 @@ class Info extends Component {
         defaultRateForToday(defaultCurrency)
     }
 
+
+
     render() {
         const {exchangeData, currency} = this.props
+        const tableBody = exchangeData.map((item, i)=> <Tbody key = {i} date={item.date} currencyExchangeData={item.currencyExchangeData} />)
         return (
             <div className="tableOfResults">
-                    <Thead currencyList = {currency? currency : defaultCurrency}/>
-                    <Tbody date={exchangeData.date} currencyExchangeData={exchangeData.currencyExchangeData}/>
+                <Thead currencyList = {currency? currency : defaultCurrency}/>
+                {tableBody}
             </div>
         )
     }

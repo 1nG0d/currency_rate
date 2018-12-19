@@ -19,7 +19,7 @@ class CurrencySelect extends Component {
     }
 
     componentDidMount(){
-        fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
+        fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date&json')
         .then(res => res.json())
         .then(result => {
                 this.setState({option: result.map((item)=>{return {value: item.cc, label: item.txt}}).concat({value: "EUR", label:"Євро"}) })

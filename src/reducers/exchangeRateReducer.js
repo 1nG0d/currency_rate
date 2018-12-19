@@ -6,16 +6,18 @@ import {
         FAILED
     } from '../constants'
 
-const exchangeRateDefault= {
-    date: new Date(),
-    currencyExchangeData: {"USD": 0, "EUR" : 0}
-}
+const exchangeRateDefault= [
+    {
+        date: new Date(),
+        currencyExchangeData: {"USD": 0, "EUR" : 0}
+    }
+]
 
 const exchangeRateReducer = (exchangeData = exchangeRateDefault, action) =>{
     const {type,payload} = action
     switch (type){
         case DEFAULT_RATE_FOR_TODAY: {
-            return { ...payload }
+            return [{...payload}]
         }
         case GET_EXCHANGE_RATE + START: { console.log("getExchangeRate", payload); return exchangeData}
 
