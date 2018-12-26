@@ -1,6 +1,13 @@
 import React, {Component} from 'react'
 import './style.scss'
 import {dateHumanReadable} from '../../../helper'
+import {
+        currencySelector,
+        quantitySelector,
+        createCurrencyExchangeData
+        } from '../../../selectors'
+
+
 import {connect} from 'react-redux'
 
 
@@ -19,22 +26,15 @@ class Trow extends Component {
     }
 }
 
-export default connect((state, ownProps)=> {
 
-    const currencyArray = state.currency;
-    let result = [];
-    if (state.exchangeData[ownProps.date].length > 0 ){
-        const tmpArr = state.exchangeData[ownProps.date];
-        const obj = tmpArr.reduce(function(acc, cur, i) {
-            acc[cur.cc] = cur;
-            return acc;
-        }, {});
-        result = currencyArray.map((currency) => obj[currency].rate )
-    }
+ const mapStateToProps = (state, ownProps)=> {
+    const currencyExchangeData = createCurrencyExchangeData()
     return ({
-        currency: state.currency,
-        quantity: state.quantity,
-        currencyExchangeData: result
+        currency: currencySelector(state),
+        quantity: quantitySelector(state),
+        currencyExchangeData: currencyExchangeData(state, ownProps)
     })
 
-})(Trow)
+}
+
+export default connect(mapStateToProps)(Trow)
