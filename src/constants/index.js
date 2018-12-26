@@ -5,6 +5,7 @@ export const CALCULATE = "CALCULATE"
 export const GET_EXCHANGE_RATE = "GET_EXCHANGE_RATE"
 export const DEFAULT_RATE_FOR_TODAY = "DEFAULT_RATE_FOR_TODAY"
 export const GET_ALL_CURRENCIES = "GET_ALL_CURRENCIES"
+export const INCREMENT = "INCREMENT"
 
 
 // sufixes

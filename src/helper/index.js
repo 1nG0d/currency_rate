@@ -8,6 +8,11 @@ export const dateHumanReadable = (date) => {
     const date_tmp = moment(date).format().substring(0,10).split("-");
     return date_tmp[2] + "-" + date_tmp[1] + "-" + date_tmp[0];
 }
+export const dateNormolizerForApiStyle = (date)=> {
+    // 19.12.2018
+    const date_tmp = date.substring(0,10).split(".");
+    return date_tmp[2]  + date_tmp[1]  + date_tmp[0];
+}
 
 function eachDay(startDate, stopDate) {
     const dateArray = [];

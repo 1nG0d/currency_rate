@@ -6,6 +6,7 @@ import {inputQuantityAction} from '../../ac'
 
 class QuantityInput extends Component {
     render() {
+        console.log("-------quantity input")
         return (
             <div>
                 <p>Input quantity:</p>

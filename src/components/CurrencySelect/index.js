@@ -6,7 +6,7 @@ import {
         } from '../../ac'
 
 import {connect} from 'react-redux'
-
+import {dateNormalizer} from "../../helper/index"
 
 const defaultOptions = [
     { value: 'USD', label: 'Долар США' },
@@ -19,7 +19,8 @@ class CurrencySelect extends Component {
     }
 
     componentDidMount(){
-        fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date&json')
+        console.log(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateNormalizer(new Date())}&json`)
+        fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateNormalizer(new Date())}&json`)
         .then(res => res.json())
         .then(result => {
                 this.setState({option: result.map((item)=>{return {value: item.cc, label: item.txt}}).concat({value: "EUR", label:"Євро"}) })
@@ -36,6 +37,7 @@ class CurrencySelect extends Component {
     }
 
     render() {
+        console.log("-------select render")
         const { selectedCurrency } = this.props;
         return (
             <div>

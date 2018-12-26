@@ -6,6 +6,7 @@ import quantityInputReducer from './quantityInputReducer'
 import calculateResultReducer from './calculateResultReducer'
 //import getExchangeRate from './getExchangeRate'
 import exchangeRateReducer from './exchangeRateReducer'
+import increment from './increment'
 
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
     selectedRange: dateSelectedReducer,
     quantity: quantityInputReducer,
     result: calculateResultReducer,
-    exchangeData: exchangeRateReducer
+    exchangeData: exchangeRateReducer,
+    increment
 })

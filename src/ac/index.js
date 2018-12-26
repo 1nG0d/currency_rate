@@ -2,18 +2,17 @@ import {
         SELECT_CURRENCY,
         SELECT_DATE_RANGE,
         INPUT_QUANTITY,
-        CALCULATE,
         GET_EXCHANGE_RATE,
         DEFAULT_RATE_FOR_TODAY,
-        GET_ALL_CURRENCIES
+        INCREMENT
         }from '../constants'
 
 import {dateNormalizer} from "../helper/index"
 
-export const getCurrenciesFromNbuApi = () =>({
-    type: GET_ALL_CURRENCIES
-})
 
+export const increment = () =>({
+    type: INCREMENT,
+})
 export const selectCurrencyAction = (currency) =>({
     type: SELECT_CURRENCY,
     payload: {currency}
@@ -21,7 +20,7 @@ export const selectCurrencyAction = (currency) =>({
 
 export const selectDateAction =(dateRange) =>({
     type: SELECT_DATE_RANGE,
-    payload: {dateRange}
+    payload: {dateRange},
 })
 
 export const inputQuantityAction = (quantity) =>({
@@ -29,31 +28,21 @@ export const inputQuantityAction = (quantity) =>({
     payload: {quantity}
 })
 
-export const resultCalculation = (exchangeRange, quantity) =>({
-    type: CALCULATE,
-    payload: {exchangeRange, quantity}
-})
-
-export const defaultRateForToday=(defaultCurrency)=> {
+export const defaultRateForToday=()=> {
     const date = dateNormalizer(new Date())
-    return function (dispatch, getState) {
-
-        Promise.all(defaultCurrency.map(currency =>
-            fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currency}&date=${date}&json`).then(resp => resp.json())
-        )).then(
-            result => {
-                const tmp = {};
-                result.forEach(item => tmp[item[0]['cc']] = item[0]['rate']);
-                console.log('result is:', tmp);
+    return function (dispatch) {
+        fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${date}&json`)
+            .then(resp => resp.json())
+            .then(result => {
                 dispatch({
                     type: DEFAULT_RATE_FOR_TODAY,
-                    payload: {date: date, currencyExchangeData: {...tmp}}
+                    payload: {[dateNormalizer(date)]: result}
                 })
             })
     }
 }
 
-export const getExchangeRate = (currency)=>({
+export const getExchangeRate = ()=>({
     type: GET_EXCHANGE_RATE,
     apiCall: true
 })

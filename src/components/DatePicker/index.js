@@ -4,7 +4,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import {connect} from 'react-redux'
-import {selectDateAction} from "../../ac"
+import {selectDateAction,getExchangeRate} from "../../ac"
 
 
 class PickDate extends React.Component {
@@ -24,14 +24,16 @@ class PickDate extends React.Component {
     }
     handleDayClick = (day)=> {
         const range = DateUtils.addDayToRange(day, this.state);
-        const {selectDateAction} = this.props
+        const {selectDateAction, getExchangeRate } = this.props
+        this.setState(range)
         selectDateAction(range)
-        this.setState(range);
+        getExchangeRate()
     }
     handleResetClick = ()=> {
         this.setState(this.getInitialState());
     }
     render() {
+        console.log("-------data picker")
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
         return (
@@ -85,4 +87,4 @@ class PickDate extends React.Component {
         );
     }
 }
-export default connect(null,{selectDateAction})(PickDate)
+export default connect(null,{selectDateAction,getExchangeRate})(PickDate)
