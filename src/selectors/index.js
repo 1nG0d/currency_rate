@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import {dateHumanReadable} from '../helper'
 
 export const currencySelector = (state) => state.currency
 export const quantitySelector = (state) => state.quantity
@@ -48,3 +49,22 @@ export const createCurrencyExchangeData = () =>{
 //     currencyArraySelector,
 //     (resData) => resData
 // )
+
+//--------------------------------------Data for Chart
+
+export const dataForChartSelector = createSelector(
+    exchangeDataSelector,
+    currencySelector,
+    (data)=>{
+        const resObject = {
+            columns:[
+                ["x"]
+            ]
+        }
+        for (let key in data){
+            resObject.columns[0].push(dateHumanReadable(key))
+        }
+        console.log("selector 3Chart data: ", data)
+    }
+
+)

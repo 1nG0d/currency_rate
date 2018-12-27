@@ -6,8 +6,8 @@ import {
 import {connect} from 'react-redux'
 import Trow from './Trow'
 import Thead from './Thead'
+import Chart from './Chart'
 import './style.scss'
-
 
 const defaultCurrency = ["USD","EUR"]
 
@@ -22,12 +22,18 @@ class Info extends Component {
         const {exchangeData, currency} = this.props
         const tableRow = Object.keys(exchangeData).map(key =><Trow key={key} date={key} />);
         return (
-            <div className="tableOfResults">
-                <Thead currencyList = {currency? currency : defaultCurrency}/>
-                <div className="Tbody">
-                    {tableRow}
+            <div className="info">
+                <div className="tableOfResults">
+                    <Thead currencyList = {currency? currency : defaultCurrency}/>
+                    <div className="Tbody">
+                        {tableRow}
+                    </div>
+                </div>
+                <div className="chart">
+                    <Chart />
                 </div>
             </div>
+
         )
     }
 
