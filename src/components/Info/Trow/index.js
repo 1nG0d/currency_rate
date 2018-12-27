@@ -26,15 +26,16 @@ class Trow extends Component {
     }
 }
 
-
- const mapStateToProps = (state, ownProps)=> {
+const makeMapStateToProps = () =>{
     const currencyExchangeData = createCurrencyExchangeData()
-    return ({
-        currency: currencySelector(state),
-        quantity: quantitySelector(state),
-        currencyExchangeData: currencyExchangeData(state, ownProps)
-    })
-
+    const mapStateToProps = (state, ownProps)=> {
+        return {
+            quantity: quantitySelector(state),
+            currencyExchangeData: currencyExchangeData(state, ownProps)
+        }
+    }
+    return mapStateToProps
 }
 
-export default connect(mapStateToProps)(Trow)
+
+export default connect(makeMapStateToProps)(Trow)
