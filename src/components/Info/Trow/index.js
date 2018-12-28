@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import './style.scss'
-import {dateHumanReadable} from '../../../helper'
+import {dateHumanReadable,daysOfWeek} from '../../../helper'
 import {
-        currencySelector,
         quantitySelector,
         createCurrencyExchangeData
         } from '../../../selectors'
@@ -19,7 +18,7 @@ class Trow extends Component {
         const currencies = Object.values(currencyExchangeData).map((item,i)=><div key={'currency_'+i} className="tbody__currency">{(item*quantity).toFixed(3)}</div>)
         return (
             <div>
-                <div className="tbody__currency date">{dateHumanReadable(date)}</div>
+                <div className="tbody__currency date">{dateHumanReadable(date)} ({daysOfWeek(date)})</div>
                 {currencies}
             </div>
         )

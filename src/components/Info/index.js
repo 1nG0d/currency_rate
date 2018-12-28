@@ -7,11 +7,13 @@ import {connect} from 'react-redux'
 import Trow from './Trow'
 import Thead from './Thead'
 import Chart from './Chart'
+import Loader from '../Loader'
 import './style.scss'
 
 const defaultCurrency = ["USD","EUR"]
 
 class Info extends Component {
+
     componentDidMount(){
         const {defaultRateForToday} = this.props
         defaultRateForToday(defaultCurrency)
@@ -19,8 +21,9 @@ class Info extends Component {
 
     render() {
         console.log("-------Table")
-        const {exchangeData, currency} = this.props
+        const {exchangeData, currency, dataLoading, dataLoaded} = this.props
         const tableRow = Object.keys(exchangeData).map(key =><Trow key={key} date={key} />);
+        if ( dataLoading ) return <Loader />
         return (
             <div className="info">
                 <div className="tableOfResults">
@@ -40,7 +43,9 @@ class Info extends Component {
 }
 
 const mapStateToProps = (state) =>({
-    exchangeData: state.exchangeData,
+    exchangeData: state.exchangeData.entities,
+    dataLoading: state.exchangeData.loading,
+    dataLoaded: state.exchangeData.loaded,
     currency: state.currency
 })
 export default connect(mapStateToProps, {defaultRateForToday})(Info)

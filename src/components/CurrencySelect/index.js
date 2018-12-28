@@ -19,7 +19,6 @@ class CurrencySelect extends Component {
     }
 
     componentDidMount(){
-        console.log(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateNormalizer(new Date())}&json`)
         fetch(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateNormalizer(new Date())}&json`)
         .then(res => res.json())
         .then(result => {

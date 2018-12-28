@@ -9,7 +9,7 @@ import 'c3/c3.css';
 
 
 const dataDefault = {
-    type: "bar",
+    type: "spline",
     x: "x",
     columns: [
         ["x", "2018-12-27","2018-12-28"],
@@ -21,7 +21,7 @@ const axis = {
     x : {
         type : 'timeseries',
             tick: {
-            format: function (x) { return dateHumanReadable(x); }
+            format: (x) => dateHumanReadable(x)
             //format: '%Y' // format string is also available for timeseries data
         }
     }
@@ -31,8 +31,7 @@ class Chart extends Component {
 
     render() {
         const {dataForChart} = this.props
-        console.log("!!!dataForChart: ", dataForChart)
-        return <C3Chart data={dataDefault} axis={axis}/>
+        return <C3Chart data={Object.assign(dataDefault,dataForChart)} axis={axis}/>
     }
 
 }

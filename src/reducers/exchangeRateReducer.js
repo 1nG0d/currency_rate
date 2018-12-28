@@ -6,18 +6,43 @@ import {
         FAILED
     } from '../constants'
 
-const exchangeRateDefault= {};
+const exchangeRateDefault= {
+    loading: false,
+    loaded: false,
+    entities: {}
+};
 
 const exchangeRateReducer = (exchangeData = exchangeRateDefault, action) =>{
     const {type,payload} = action
     switch (type){
-        case DEFAULT_RATE_FOR_TODAY: return {...payload}
+        case DEFAULT_RATE_FOR_TODAY + START: return {
+            loading: true,
+            loaded: false,
+            entities: {...payload}
+        }
+        case DEFAULT_RATE_FOR_TODAY + SUCCESS: return {
+            loading: false,
+            loaded: true,
+            entities: {...payload}
+        }
 
-        case GET_EXCHANGE_RATE + START: { console.log("getExchangeRateSTART")}
+        case DEFAULT_RATE_FOR_TODAY + FAILED: {
+            console.log('||', action.error)
+            return exchangeData
+        }
 
-        case GET_EXCHANGE_RATE + SUCCESS: { console.log("getExchangeRate SUCCESS", payload); return {...payload}}
+        case GET_EXCHANGE_RATE + START: return Object.assign(exchangeData,{loading:true})
 
-        case GET_EXCHANGE_RATE + FAILED: { console.log("getExchangeRate", payload);}
+        case GET_EXCHANGE_RATE + SUCCESS: return {
+            loading: false,
+            loaded: true,
+            entities: {...payload},
+        }
+
+        case GET_EXCHANGE_RATE + FAILED: {
+            console.log('||', action.error)
+            return exchangeData
+        }
 
         default: return exchangeData
     }
